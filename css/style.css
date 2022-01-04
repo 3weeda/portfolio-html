@@ -1244,6 +1244,10 @@ h3.slide-title {
   line-height: 0.85;
 }
 
+.first-title {
+  margin-bottom: 0;
+}
+
 .slide-descr {
   margin-top: 1.875rem;
   letter-spacing: -0.01em;
@@ -1489,13 +1493,52 @@ h3.slide-title {
 }
 
 .bar-item-title {
-  font-size: 1rem;
+  font-size: 1.25rem;
   font-weight: bold;
+}
+
+@media (max-width: 1200px) {
+  .bar-item-title {
+    font-size: 1rem;
+    font-weight: bold;
+  }
 }
 
 .bar-item-value {
   padding-top: 2px;
   font-size: 0.875rem;
+}
+
+.right-side {
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  top: 10%;
+  right: 10%;
+  flex: 0 0 20%;
+  max-width: 20%;
+}
+
+@media (max-width: 1200px) {
+  .left-side {
+    flex: 0 0 90%;
+    max-width: 90%;
+  }
+
+  .right-side {
+    display: none;
+  }
+}
+
+@media (max-width: 769px) {
+  .left-side {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  .right-side {
+    display: none;
+  }
 }
 
 .progress {

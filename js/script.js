@@ -160,28 +160,62 @@
 	  Ajax Forms
 	-------------------------------------------------------------------------------*/
 
-  if ($(".a-form").length) {
-    $(".a-form").each(function () {
-      $(this).validate({
-        errorClass: "error",
-        submitHandler: function (form) {
-          $.ajax({
-            type: "POST",
-            url: "mail.php",
-            data: $(form).serialize(),
-            success: function () {
-              $(".form-group-message").show();
-              $("#error").hide();
-              $("#success").show();
-            },
-            error: function () {
-              $(".form-group-message").show();
-              $("#success").hide();
-              $("#error").show();
-            },
-          });
+  // listen to the form submission
+  document
+    .getElementById("contactForm")
+    .addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      const serviceID = "service_0ux389e";
+      const templateID = "template_05uylgr";
+
+      document.getElementById("contact-btn").textContent = "Loading...";
+
+      // send the email here
+      emailjs.sendForm(serviceID, templateID, this).then(
+        (response) => {
+          console.log("SUCCESS!", response.status, response.text);
+          $(".form-group-message").show();
+          $("#error").hide();
+          $("#success").show();
+          setTimeout(() => {
+            $("#request").modal("hide");
+          }, 1000);
+          document.getElementById("contact-btn").textContent = "Thanks!";
         },
-      });
+        (error) => {
+          console.log("FAILED...", error);
+          $(".form-group-message").show();
+          $("#success").hide();
+          $("#error").show();
+          document.getElementById("contact-btn").textContent =
+            "Please try again!";
+        }
+      );
     });
-  }
+
+  // if ($(".a-form").length) {
+  //   $(".a-form").each(function () {
+  //     $(this).validate({
+  //       errorClass: "error",
+  //       submitHandler: function (form) {
+  //         $.ajax({
+  //           type: "POST",
+  //           url: "mail.php",
+  //           data: $(form).serialize(),
+  //           success: function () {
+  //             $(".form-group-message").show();
+  //             $("#error").hide();
+  //             $("#success").show();
+  //           },
+  //           error: function () {
+  //             $(".form-group-message").show();
+  //             $("#success").hide();
+  //             $("#error").show();
+  //           },
+  //         });
+  //       },
+  //     });
+  //   });
+  // }
 })($);
