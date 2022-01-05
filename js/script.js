@@ -51,7 +51,6 @@
       menu: "#menu, #menuMain",
       anchors: [
         "About",
-        "Services",
         "Skills",
         "Resume",
         "Portfolio",
