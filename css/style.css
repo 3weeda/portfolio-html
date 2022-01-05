@@ -1687,6 +1687,22 @@ h3.slide-title {
 
 .portfolio-item-photo {
   margin-bottom: 1.75rem;
+  height: 300px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.portfolio-item-photo img {
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.6;
+  transition: 0.5s;
+  transform: scale(1.2);
+}
+
+.portfolio-item-photo img:hover {
+  opacity: 1;
+  transform: scale(1);
 }
 
 @media (min-width: 768px) {
